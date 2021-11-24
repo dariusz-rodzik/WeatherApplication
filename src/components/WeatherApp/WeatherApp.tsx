@@ -27,7 +27,9 @@ const WeatherApp = () => {
 
   const getCityId = () => {
     axios
-      .get<Types.City[]>(`${API_URL}location/search/?query=${inputCity}`)
+      .get<Types.City[]>(`${API_URL}location/search/?query=${inputCity}`, {
+        headers: { "Access-Control-Allow-Origin": "*" },
+      })
       .then((res) => setCityId(res.data[0].woeid))
       .catch(() =>
         alert("Failed to download data. Please enter a valid city.")
@@ -38,7 +40,9 @@ const WeatherApp = () => {
     if (cityId) {
       localStorage.setItem("city", cityId);
       axios
-        .get<Types.ConsolidedWeather>(`${API_URL}location/${cityId}`)
+        .get<Types.ConsolidedWeather>(`${API_URL}location/${cityId}`, {
+          headers: { "Access-Control-Allow-Origin": "*" },
+        })
         .then((res) => setCityWeather(res.data))
         .catch(() =>
           alert("Failed to download data. Please enter a valid city.")
