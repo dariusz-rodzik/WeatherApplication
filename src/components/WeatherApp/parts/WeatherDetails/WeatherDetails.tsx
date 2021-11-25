@@ -1,6 +1,7 @@
 import { CardContent } from "@mui/material";
 import * as Types from "./WeatherDetails.types";
 import * as Styles from "./WeatherDetails.styles";
+import { Degrees } from "shared/types";
 
 const WeatherDetails = ({ day, index, degrees }: Types.Props) => {
   const renderSwitch = (day: number) => {
@@ -19,14 +20,14 @@ const WeatherDetails = ({ day, index, degrees }: Types.Props) => {
         <Styles.Day>{renderSwitch(index)}</Styles.Day>
         <Styles.Date>{day.applicable_date}</Styles.Date>
         <Styles.Temp>
-          {degrees === 1
+          {degrees === Degrees.Celcius
             ? `Max temp: ${day.max_temp.toPrecision(3)} Celcius`
             : `Max temp: ${(day.max_temp * 1.8 + 32.0).toPrecision(
                 3
               )} Fahrenheit`}
         </Styles.Temp>
         <Styles.Temp>
-          {degrees === 1
+          {degrees === Degrees.Celcius
             ? `Min temp: ${day.min_temp.toPrecision(3)} Celcius`
             : `Min temp: ${(day.min_temp * 1.8 + 32.0).toPrecision(
                 3
