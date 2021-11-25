@@ -3,6 +3,10 @@ import * as Types from "./WeatherDetails.types";
 import * as Styles from "./WeatherDetails.styles";
 import { Degrees } from "shared/types";
 
+const toFahrenheit = (temperature: number) => {
+  return temperature * 1.8 + 32.0;
+};
+
 const renderDay = (day: number) => {
   switch (day) {
     case 0:
@@ -23,14 +27,14 @@ const WeatherDetails = ({ day, index, degrees }: Types.Props) => {
         <Styles.Temp>
           {degrees === Degrees.Celcius
             ? `Max temp: ${day.max_temp.toPrecision(3)} Celcius`
-            : `Max temp: ${(day.max_temp * 1.8 + 32.0).toPrecision(
+            : `Max temp: ${toFahrenheit(day.max_temp).toPrecision(
                 3
               )} Fahrenheit`}
         </Styles.Temp>
         <Styles.Temp>
           {degrees === Degrees.Celcius
             ? `Min temp: ${day.min_temp.toPrecision(3)} Celcius`
-            : `Min temp: ${(day.min_temp * 1.8 + 32.0).toPrecision(
+            : `Min temp: ${toFahrenheit(day.min_temp).toPrecision(
                 3
               )} Fahrenheit`}
         </Styles.Temp>
