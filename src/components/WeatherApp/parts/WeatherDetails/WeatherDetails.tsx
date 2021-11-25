@@ -3,21 +3,22 @@ import * as Types from "./WeatherDetails.types";
 import * as Styles from "./WeatherDetails.styles";
 import { Degrees } from "shared/types";
 
+const renderDay = (day: number) => {
+  switch (day) {
+    case 0:
+      return "Today";
+    case 1:
+      return "Tomorrow";
+    case 2:
+      return "Day after tomorrow";
+  }
+};
+
 const WeatherDetails = ({ day, index, degrees }: Types.Props) => {
-  const renderSwitch = (day: number) => {
-    switch (day) {
-      case 0:
-        return "Today";
-      case 1:
-        return "Tomorrow";
-      case 2:
-        return "Day after tomorrow";
-    }
-  };
   return (
     <Styles.WeatherCard>
       <CardContent>
-        <Styles.Day>{renderSwitch(index)}</Styles.Day>
+        <Styles.Day>{renderDay(index)}</Styles.Day>
         <Styles.Date>{day.applicable_date}</Styles.Date>
         <Styles.Temp>
           {degrees === Degrees.Celcius
