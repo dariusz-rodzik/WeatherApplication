@@ -7,10 +7,10 @@ const useGeolocation = () => {
   const [geolocation, setGeolocation] = useState("");
   useEffect(() => {
     navigator.geolocation.getCurrentPosition(
-      (x) =>
+      (coordinates) =>
         axios
           .get<Types.CoordinatesCity[]>(
-            `${API_URL}location/search/?lattlong=${x.coords.latitude.toString()},${x.coords.longitude.toString()}`,
+            `${API_URL}location/search/?lattlong=${coordinates.coords.latitude.toString()},${coordinates.coords.longitude.toString()}`,
             {
               headers: { "Access-Control-Allow-Origin": "*" },
             }
